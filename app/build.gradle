@@ -1,0 +1,118 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.example.traintime'
+    compileSdk 33
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    defaultConfig {
+        applicationId "com.example.traintime"
+        minSdk 24
+        targetSdk 33
+        versionCode 3
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+}
+
+ext {
+    room_version = "2.5.2"
+    hilt_version = "2.44.2"
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    // UI
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+
+    //FusedLocationProvider [GPS SHOWTIMES]
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
+    //////////////////// Unit Tests
+    // JUnit 4 framework
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "androidx.test.ext:junit-ktx:1.1.5"
+    // Truth
+    testImplementation "com.google.truth:truth:1.1.2"
+    // Robolectric environment
+    testImplementation "androidx.test:core-ktx:1.5.0"
+    testImplementation "org.robolectric:robolectric:4.10.3"
+    // Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    //Room
+    testImplementation("androidx.room:room-testing:$room_version")
+
+    //////////////////// Automated Tests
+    // JUnit 4 framework
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    // Mockito
+    androidTestImplementation "org.mockito:mockito-core:5.4.0"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.28.1"
+    // Truth
+    androidTestImplementation "com.google.truth:truth:1.1.2"
+    // Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1") {
+        exclude group: 'org.checkerframework', module: 'checker'
+    }
+
+    // Hilt For instrumented tests.
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    // ...with Kotlin.
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    /// Fragment testing code should not be included in the main code.
+    // Check https://issuetracker.google.com/128612536
+    debugImplementation "androidx.fragment:fragment-testing:1.6.1"
+    implementation "androidx.test:core:1.5.0"
+    //
+
+    // Libreria barra progresso circolare dettaglio film
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
+
+}
+
+kapt {
+    correctErrorTypes true
+}
