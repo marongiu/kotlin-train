@@ -30,7 +30,8 @@
             android:textAlignment="textStart"
             android:minHeight="48dp"
             android:padding="10dp"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
             tools:ignore="VisualLintTextFieldSize" />
 
         <com.google.android.material.button.MaterialButton
@@ -45,8 +46,9 @@
             android:hint="@string/destination_input"
             android:textAlignment="textStart"
             android:minHeight="48dp"
+            android:textSize="18sp"
             android:padding="10dp"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/white"
             tools:ignore="VisualLintTextFieldSize" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
